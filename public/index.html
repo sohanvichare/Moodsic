@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Moodsic</title>
+  </head>
+  <body>
+    <input id="inp" type='file'>
+    <p id="b64"></p>
+    <img id="img">
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+      var socket = io();
+      function EL(id) { return document.getElementById(id); } // Get el by ID helper function
+      function readFile() {
+        if (this.files && this.files[0]) {
+          var FR= new FileReader();
+          FR.onload = function(e) {
+            EL("img").src       = e.target.result;
+            socket.emit('chat message', e.target.result);
+          };
+          FR.readAsDataURL( this.files[0] );
+        }
+      }
+
+      EL("inp").addEventListener("change", readFile, false);
+    </script>
+  </body>
+</html>

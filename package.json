@@ -1,0 +1,19 @@
+{
+  "name": "moodsic",
+  "version": "1.0.0",
+  "description": "A program that selects the best music for you based on the mood of what you are reading.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sohan Vichare",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.4",
+    "js-base64": "^2.1.9",
+    "node-tesseract": "^0.2.7",
+    "sentiment": "^1.0.6",
+    "sentiment-analysis": "^0.1.1",
+    "socket.io": "^1.4.5"
+  }
+}

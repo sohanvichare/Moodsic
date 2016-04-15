@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Moodsic</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+    <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+
+
+     <style>
+     .wholePg {
+  background-color:white;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#titleTextDiv {
+  color:#8C6954;
+  text-align: center;
+}
+
+#titleText {
+  font-family: 'Dancing Script', cursive;
+  font-weight: 700;
+}
+#img {
+  font-family: 'Dancing Script', cursive;
+}
+
+#subtitleTextDiv {
+  font-family: 'Dancing Script', cursive;
+  font-weight: 400;
+  text-align: center;
+  color:#8C6954;
+}
+
+#uploadForm {
+  font-family: 'Dancing Script', cursive;
+  font-weight: 400;
+  align: center;
+  text-align: center;
+}
+
+     </style>
+     <!-- Compiled and minified JavaScript -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+  </head>
+  <body class="">
+    <div class="containter">
+  <div class="wholePg">
+    <div class="row">
+      <div class="col s12">
+      <div id="titleTextDiv">
+        <h1 id='titleText'>Moodsic</h1>
+      </div>
+    </div>
+    <div class="col s12">
+      <div id='subtitleTextDiv'>
+        <p class="flow-text animated fadeInUp" id='subtitleText'>Find music that is tailored to what you are reading. Just take a picture of the page you are reading, and then upload it here to instantly find the perfect song.</p>
+        <p id="img"></p>
+      </div>
+    </div>
+    <div class="col s12 center">
+      <input id="inp" class="animated bounceIn center" type='file'>
+    </div>
+    </div>
+    </div>
+    </div>
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+      var socket = io();
+      socket.on("res",function(data){
+        EL("img").innerHTML       = "Enjoy :) Upload another to reprocess";
+        EL("img").className       += " animated bounceIn Enjoy :)";
+        var str = "happy"
+        var bpm=100;
+        console.log(data)
+        if (data<0) {
+          str = "sad"
+        }
+        if (data>0.5) {
+          bpm = 150;
+        }
+        if (data<0.5&&data>0) {
+          bpm = 120;
+        }
+        if (data<0) {
+          bpm = 50;
+        }
+      })
+      function EL(id) { return document.getElementById(id); } // Get el by ID helper function
+      function readFile() {
+        if (this.files && this.files[0]) {
+          var FR= new FileReader();
+          FR.onload = function(e) {
+            EL("img").innerHTML       = "Processing...";
+            socket.emit('chat message', e.target.result.split(",")[1]);
+          };
+          FR.readAsDataURL( this.files[0] );
+        }
+      }
+
+      EL("inp").addEventListener("change", readFile, false);
+    </script>
+  </body>
+</html>
