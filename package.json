@@ -14,8 +14,7 @@
     "js-base64": "^2.1.9",
     "node-tesseract": "^0.2.7",
     "sentiment": "^1.0.6",
-    "tesseract": "^0.0.3",
     "sentiment-analysis": "^0.1.1",
-    "socket.io": "^1.4.5"
+    "socket.io": "^1.4.5",
   }
 }
