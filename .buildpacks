@@ -1,2 +1,2 @@
-https://github.com/heroku/heroku-buildpack-nodejs
+heroku/nodejs
 https://github.com/matteotiziano/heroku-buildpack-tesseract
