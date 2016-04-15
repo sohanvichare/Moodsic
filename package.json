@@ -4,7 +4,8 @@
   "description": "A program that selects the best music for you based on the mood of what you are reading.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node index.js",
+    "start": "node index.js"
   },
   "author": "Sohan Vichare",
   "license": "ISC",
